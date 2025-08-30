@@ -19,10 +19,12 @@ const syncUser = inngest.createFunction(
             name:  `${first_name || ""} ${last_name || ""}`,
             image: image_url
         }
+
+        console.log(new_user);
         
         await User.create(new_user);
     }
-)
+);
 
 const deleteUser = inngest.createFunction(
     {id: "delete-user"},
@@ -33,7 +35,7 @@ const deleteUser = inngest.createFunction(
 
         await User.deleteOne({clerkId: id})
     }
-)
+);
 
 // Create an empty array where we'll export future Inngest functions
 export const functions = [syncUser, deleteUser];
